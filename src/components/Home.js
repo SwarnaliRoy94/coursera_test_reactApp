@@ -7,34 +7,44 @@ import {
   CardText,
   CardTitle,
 } from "reactstrap";
+import { LoadingComponent } from "./LoadingComponent";
 
-const RenderCard = ({ item }) => {
-  return (
-    <Card>
-      <CardImg src={item.image} alt={item.name} />
-      <CardBody>
-        <CardTitle>{item.name}</CardTitle>
-        {item.designation ? (
-          <CardSubtitle>{item.designation}</CardSubtitle>
-        ) : null}
-        <CardText>{item.description}</CardText>
-      </CardBody>
-    </Card>
-  );
+const RenderCard = ({ item, isLoading, errMsg }) => {
+  if (isLoading) {
+    return <LoadingComponent />;
+  } else if (errMsg) {
+    return <h4>{errMsg}</h4>;
+  } else
+    return (
+      <Card>
+        <CardImg src={item.image} alt={item.name} />
+        <CardBody>
+          <CardTitle>{item.name}</CardTitle>
+          {item.designation ? (
+            <CardSubtitle>{item.designation}</CardSubtitle>
+          ) : null}
+          <CardText>{item.description}</CardText>
+        </CardBody>
+      </Card>
+    );
 };
 
-const Home = ({ dish, promotion, leader }) => {
+const Home = (props) => {
   return (
     <div className="container">
       <div className="row align-items-start">
         <div className="col-12 col-md m-1">
-          <RenderCard item={dish} />
+          <RenderCard
+            item={props.dish}
+            isLoading={props.dishesLoading}
+            errMsg={props.dishesErrMsg}
+          />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={promotion} />
+          <RenderCard item={props.promotion} />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={leader} />
+          <RenderCard item={props.leader} />
         </div>
       </div>
     </div>
