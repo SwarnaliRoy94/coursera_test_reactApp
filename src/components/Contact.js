@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Control, Errors, Form, LocalForm } from "react-redux-form";
+import { Control, Errors, Form } from "react-redux-form";
 import { Link } from "react-router-dom";
 import {
   Breadcrumb,
@@ -25,9 +25,8 @@ class Contact extends Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
     this.props.resetFeedbackForm();
+    this.props.postFeedback(values);
     // event.preventDefault();
   }
 
@@ -108,9 +107,9 @@ class Contact extends Component {
                 </Label>
                 <Col md={10}>
                   <Control.text
-                    model=".firstname"
+                    model=".firstName"
                     id="firstname"
-                    name="firstname"
+                    name="firstName"
                     placeholder="First Name"
                     className="form-control"
                     validators={{
@@ -121,7 +120,7 @@ class Contact extends Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".firstname"
+                    model=".firstName"
                     show="touched"
                     messages={{
                       required: "Required",
@@ -137,9 +136,9 @@ class Contact extends Component {
                 </Label>
                 <Col md={10}>
                   <Control.text
-                    model=".lastname"
+                    model=".lastName"
                     id="lastname"
-                    name="lastname"
+                    name="lastName"
                     placeholder="Last Name"
                     className="form-control"
                     validators={{
@@ -150,7 +149,7 @@ class Contact extends Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".lastname"
+                    model=".lastName"
                     show="touched"
                     messages={{
                       required: "Required",
@@ -166,9 +165,9 @@ class Contact extends Component {
                 </Label>
                 <Col md={10}>
                   <Control.text
-                    model=".telnum"
+                    model=".telNum"
                     id="telnum"
-                    name="telnum"
+                    name="telNum"
                     placeholder="Tel. Number"
                     className="form-control"
                     validators={{
@@ -180,7 +179,7 @@ class Contact extends Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".telnum"
+                    model=".telNum"
                     show="touched"
                     messages={{
                       required: "Required",
