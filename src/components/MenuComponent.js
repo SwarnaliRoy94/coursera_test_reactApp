@@ -8,13 +8,14 @@ import {
   CardImgOverlay,
   CardTitle,
 } from "reactstrap";
+import { baseUrl } from "../shared/baseUrl";
 import { LoadingComponent } from "./LoadingComponent";
 
 function RenderMenuItem({ dish }) {
   return (
     <Card>
       <Link to={`/menu/${dish.id}`}>
-        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
         <CardImgOverlay>
           <CardTitle>{dish.name}</CardTitle>
         </CardImgOverlay>
